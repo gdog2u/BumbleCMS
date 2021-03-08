@@ -26,9 +26,11 @@ class Post
         if(isset($data['Summary'])){ $this->Summary = $data['Summary']; }
 
         if(isset($data['Body'])){ $this->Body = $data['Body']; }
+
+		if(isset($data['Tags'])){ $this->Tags = data['Tags']; }
     }
 
-    public function getByID($id)
+    public static function getByID($id)
     {
         if(!isset(id)){ return null; }
 
@@ -52,13 +54,13 @@ class Post
         return null;
     }
 
-    public function getNRows($numberOfRows=999999)
+    public static function getNRows($numberOfRows=999999)
     {
         $return = array(
             'count' => 0,
             'posts' => []
         )
-        $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
+		$conn = new PDO(DB_DSN, DB_USER, DB_PASS);
         $get = $conn->prepare("
             SELECT *
             FROM Posts
@@ -82,7 +84,36 @@ class Post
         return $return;
     }
 
-    public function getByTags
+	public static function getByTag($tagID, $numberOfRows=999999)
+	{
+		$return = array(
+			'count' => 0,
+			'posts' => []
+		);
+		$conn = new PDO(DB_DSN, DB_USER, DB_PASS);
+		$get = $conn->prepare("
+			SELECT Posts.*
+			FROM Posts
+				JOIN PostTagLookup ON PostTagLookup.PostID = Posts.PostID
+			WHERE PostTagLookup.TagID = ?
+			LIMIT ?
+		");
+
+		if(!$get->execute($this->PostID, $tagID))
+		{
+			trigger_error("Post::getByTag failed to get posts with TagID $tagID");
+			return null;
+		}
+
+		while($post = $get->fetch)
+		{
+			$return['posts'][] = $post;
+		}
+
+		$return['count'] = count($return['posts']);
+
+		return $return;
+	}
 
     public function insert()
     {
