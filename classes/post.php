@@ -38,7 +38,7 @@ class Post
         $get = $conn->prepare("
             SELECT *
             FROM Posts
-            WHERE id=?
+            WHERE PostID=?
         ");
 
         if(!$get->execute([$id]))
