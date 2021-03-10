@@ -1,4 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
+
+DROP INDEX Username ON Users;
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users
 (
@@ -38,6 +40,7 @@ CREATE TABLE Posts
     FOREIGN KEY (StatusID) REFERENCES PostStatuses(StatusID)
 );
 
+DROP INDEX TagName ON PostTags;
 DROP TABLE IF EXISTS PostTags;
 CREATE TABLE PostTags
 (
