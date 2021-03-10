@@ -13,43 +13,43 @@ class Post
     public $Body = null;
     public $Tags = null;
 
-    public function __constructor($data = array())
+    public function __construct($data = array())
     {
         if(isset($data['PostID'])){ $this->PostID = $data['PostID']; }
-
+        
         if(isset($data['AuthorID'])){ $this->AuthorID = $data['AuthorID']; }
-
+        
         if(isset($data['PublishedDate'])){ $this->PublishedDate = $data['PublishedDate']; }
-
+        
         if(isset($data['Title'])){ $this->Title = $data['Title']; }
-
+        
         if(isset($data['Summary'])){ $this->Summary = $data['Summary']; }
-
+        
         if(isset($data['Body'])){ $this->Body = $data['Body']; }
-
+        
 		if(isset($data['Tags'])){ $this->Tags = data['Tags']; }
     }
-
+    
     public static function getByID($id)
     {
         if(!isset($id)){ return null; }
-
+        
         $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
         $get = $conn->prepare("
             SELECT *
             FROM Posts
             WHERE PostID=?
         ");
-
+        
         if(!$get->execute([$id]))
         {
             return null;
         }
-
+        
         $post = $get->fetch();
         $conn = null;
-
-        if($row){ return new Post($row); }
+        
+        if($post){ return new Post($post); }
 
         return null;
     }
