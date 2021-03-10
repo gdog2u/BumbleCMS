@@ -99,7 +99,7 @@ class Post
 			LIMIT ?
 		");
 
-		if(!$get->execute($this->PostID, $tagID))
+		if(!$get->execute($tagID, $numberOfRows))
 		{
 			trigger_error("Post::getByTag failed to get posts with TagID $tagID");
 			return null;
