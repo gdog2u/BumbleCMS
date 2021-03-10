@@ -1,3 +1,4 @@
+SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users
 (
@@ -55,6 +56,7 @@ CREATE TABLE PostTagLookup
 
     CONSTRAINT PK_PostTagLookup PRIMARY KEY (PostID, TagID)
 );
+SET FOREIGN_KEY_CHECKS=1;
 
 INSERT INTO PostStatuses(StatusName)
 VALUES ('Published'), ('Draft'), ('Deleted');
