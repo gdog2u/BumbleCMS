@@ -32,7 +32,7 @@ class Post
 
     public static function getByID($id)
     {
-        if(!isset(id)){ return null; }
+        if(!isset($id)){ return null; }
 
         $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
         $get = $conn->prepare("
