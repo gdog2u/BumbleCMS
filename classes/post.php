@@ -59,7 +59,7 @@ class Post
         $return = array(
             'count' => 0,
             'posts' => []
-        )
+        );
 		$conn = new PDO(DB_DSN, DB_USER, DB_PASS);
         $get = $conn->prepare("
             SELECT *
