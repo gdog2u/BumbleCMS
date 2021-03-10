@@ -1,6 +1,6 @@
 <?php
 
-require_once(CLASS_PATH.'PostTags.php');
+require_once(CLASS_PATH.'posttags.php');
 
 class Post
 {
