@@ -25,7 +25,7 @@ class Post
 
         if(isset($data['Body'])){ $this->Body = $data['Body']; }
 
-		if(isset($data['Tags'])){ $this->Tags = data['Tags']; }
+		if(isset($data['Tags'])){ $this->Tags = $data['Tags']; }
     }
 
     public static function getByID($id)
@@ -160,9 +160,9 @@ class Post
         if(is_null($this->PostID)){ return; }
         if(is_null($tagID)){ return; }
 
-        $tag = PostTags::getByID($tagID);
+        $tag = Tag::getByID($tagID);
 
-        if(!tag){ return; }
+        if(!$tag){ return; }
 
         $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
         $insert = $conn->prepare("
