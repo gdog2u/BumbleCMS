@@ -15,8 +15,8 @@ CREATE TABLE Users
     UNIQUE (Username)
 );
 
-DROP TABLE IF EXISTS PostStatuses;
-CREATE TABLE PostStatuses
+DROP TABLE IF EXISTS Statuses;
+CREATE TABLE Statuses
 (
     StatusID TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     StatusName VARCHAR(20) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE Posts
 
     PRIMARY KEY (PostID),
     FOREIGN KEY (AuthorID) REFERENCES Users(UserID),
-    FOREIGN KEY (StatusID) REFERENCES PostStatuses(StatusID)
+    FOREIGN KEY (StatusID) REFERENCES Statuses(StatusID)
 );
 
 DROP INDEX TagName ON PostTags;
@@ -61,5 +61,5 @@ CREATE TABLE PostTagLookup
 );
 SET FOREIGN_KEY_CHECKS=1;
 
-INSERT INTO PostStatuses(StatusName)
+INSERT INTO Statuses(StatusName)
 VALUES ('Published'), ('Draft'), ('Deleted');
