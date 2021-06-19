@@ -1,7 +1,5 @@
 <?php
 
-require_once(CLASS_PATH.'posttags.php');
-
 class Post
 {
     // Properties
@@ -16,39 +14,39 @@ class Post
     public function __construct($data = array())
     {
         if(isset($data['PostID'])){ $this->PostID = $data['PostID']; }
-        
+
         if(isset($data['AuthorID'])){ $this->AuthorID = $data['AuthorID']; }
-        
+
         if(isset($data['PublishedDate'])){ $this->PublishedDate = $data['PublishedDate']; }
-        
+
         if(isset($data['Title'])){ $this->Title = $data['Title']; }
-        
+
         if(isset($data['Summary'])){ $this->Summary = $data['Summary']; }
-        
+
         if(isset($data['Body'])){ $this->Body = $data['Body']; }
-        
+
 		if(isset($data['Tags'])){ $this->Tags = data['Tags']; }
     }
-    
+
     public static function getByID($id)
     {
         if(!isset($id)){ return null; }
-        
+
         $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
         $get = $conn->prepare("
             SELECT *
             FROM Posts
             WHERE PostID=?
         ");
-        
+
         if(!$get->execute([$id]))
         {
             return null;
         }
-        
+
         $post = $get->fetch();
         $conn = null;
-        
+
         if($post){ return new Post($post); }
 
         return null;
