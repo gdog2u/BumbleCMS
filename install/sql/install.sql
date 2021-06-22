@@ -1,5 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
 
+/* Base / Misc table*/
 DROP TABLE IF EXISTS BumbleOptions;
 CREATE TABLE BumbleOptions
 (
@@ -35,6 +36,7 @@ CREATE TABLE Statuses
     PRIMARY KEY (StatusID)
 );
 
+/* Tables pertaining to Posts */
 DROP TABLE IF EXISTS Posts;
 CREATE TABLE Posts
 (
@@ -73,5 +75,8 @@ CREATE TABLE PostTagLookup
 );
 SET FOREIGN_KEY_CHECKS=1;
 
+/* Media Tables */
+
+/* Add some default rows to tables */
 INSERT INTO Statuses(StatusName)
 VALUES ('Published'), ('Draft'), ('Deleted');
