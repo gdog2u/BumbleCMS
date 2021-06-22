@@ -1,5 +1,24 @@
 <?php
 
+function loadSiteSettings()
+{
+    global $dbh;
+
+    $options = [];
+    $get = $dbh->prepare("
+        SELECT OptionName, OptionValue
+        FROM BumbleOptions
+    ");
+
+    $get->execute();
+    while($option = $get->fetch())
+    {
+        $options[$option['OptionName']] = $option['OptionValue'];
+    }
+
+    return $options;
+}
+
 function getSlugFromURI(): array
 {
     $uri = preg_split("/\//", $_SERVER["REQUEST_URI"], -1, PREG_SPLIT_NO_EMPTY);

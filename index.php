@@ -6,13 +6,19 @@
 	
 	include("functions.php");
 
+	try{
+		$bumble = loadSiteSettings();
+	}catch(Exception $e){
+		exit();
+	}
+
 	$slug = getSlugFromURI();
 
-	$template = getSlugTemplate($slug[0]);
+	$template = getSlugTemplate($slug[0]??"");
 
-	if(file_exists(VIEWS_PATH.$template))
+	if(file_exists(THEME_PATH.$template))
 	{
-		include(VIEWS_PATH.$template);
+		include(THEME_PATH.$template);
 	}
 	else
 	{
