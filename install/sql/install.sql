@@ -10,7 +10,17 @@ CREATE TABLE BumbleOptions
     LastUpdated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 
     PRIMARY KEY (OptionID)
-)
+);
+
+DROP TABLE IF EXISTS RewriteEngine;
+CREATE TABLE RewriteEngine
+(
+    ID INT NOT NULL AUTO_INCREMENT,
+    PostCategory INT NOT NULL,
+    TemplatePath VARCHAR(200) NOT NULL,
+
+    PRIMARY KEY (ID)
+);
 
 DROP INDEX Username ON Users;
 DROP TABLE IF EXISTS Users;
@@ -53,6 +63,19 @@ CREATE TABLE Posts
     FOREIGN KEY (AuthorID) REFERENCES Users(UserID),
     FOREIGN KEY (StatusID) REFERENCES Statuses(StatusID)
 );
+
+DROP TABLE IF EXISTS PostCategories;
+CREATE TABLE PostCategories
+(
+    PostCategoryID INT NOT NULL AUTO_INCREMENT,
+    CategoryName VARCHAR(100) NOT NULL,
+    CategoryURIPrefix VARCHAR(125) NOT NULL,
+
+    PRIMARY KEY (PostCategoryID)
+);
+ALTER TABLE RewriteEngine
+ADD CONSTRAINT FK_RewriteEngine_PostCategory
+    FOREIGN KEY (PostCategory) REFERENCES PostCategories(PostCategoryID);
 
 DROP INDEX TagName ON Tags;
 DROP TABLE IF EXISTS Tags;
