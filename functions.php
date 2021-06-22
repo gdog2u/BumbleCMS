@@ -17,6 +17,6 @@ function getSlugTemplate(string $slug): string
 function display404()
 {
     http_response_code(404);
-    include(VIEWS_PATH."errors/404.php");
+    include(THEME_PATH."errors/404.php");
     exit(0);
 }
