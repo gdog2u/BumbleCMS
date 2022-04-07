@@ -16,9 +16,9 @@
 
 	$template = getSlugTemplate($slug[0]??"");
 
-	if(file_exists(THEME_PATH.$template))
+	if(file_exists($bumble['theme-path'].$template))
 	{
-		include(THEME_PATH.$template);
+		include($bumble['theme-path'].$template);
 	}
 	else
 	{
