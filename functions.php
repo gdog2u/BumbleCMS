@@ -16,6 +16,8 @@ function loadSiteSettings()
         $options[$option['OptionName']] = $option['OptionValue'];
     }
 
+    $options['theme-path'] = THEME_PATH.$options['active-theme-path']."/";
+
     return $options;
 }
 
@@ -47,7 +49,8 @@ function getSlugTemplate(string $slug): string
 
 function display404()
 {
-    http_response_code(404);
-    include(THEME_PATH."errors/404.php");
+    global $bumble;
+    
+    include($bumble['theme-path']."errors/404.php");
     exit(0);
 }
