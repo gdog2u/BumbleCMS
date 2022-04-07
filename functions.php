@@ -29,8 +29,20 @@ function getSlugFromURI(): array
 function getSlugTemplate(string $slug): string
 {
     global $dbh;
+
+    $template = "";
+
+    $get = $dbh->prepare("
+        SELECT TemplateFile
+        FROM PostCategories
+        WHERE CategoryURIPrefix = ?
+    ");
+
+    $get->execute([$slug]);
+
+    $template = $get->fetchColumn(0);
    
-    return "";
+    return $template;
 }
 
 function display404()
