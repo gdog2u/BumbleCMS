@@ -3,7 +3,7 @@
      * 404.php
      * @author Bee Hudson
      */
-    include(VIEWS_PATH."partials/header.php");
+    include_once($bumble['theme-path']."partials/header.php");
 ?>
 <div>
     <h1>404</h1>
@@ -12,4 +12,4 @@
     </p>
 </div>
 <?php
-    include(VIEWS_PATH."partials/header.php");
+    include_once($bumble['theme-path']."partials/footer.php");
