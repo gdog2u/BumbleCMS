@@ -69,6 +69,7 @@ CREATE TABLE PostCategories
     PostCategoryID INT NOT NULL AUTO_INCREMENT,
     CategoryName VARCHAR(100) NOT NULL,
     CategoryURIPrefix VARCHAR(125) NOT NULL,
+    TemplateFile VARCHAR(255) NOT NULL,
 
     PRIMARY KEY (PostCategoryID)
 );
