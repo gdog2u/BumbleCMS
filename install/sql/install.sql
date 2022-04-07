@@ -6,6 +6,7 @@ CREATE TABLE BumbleOptions
 (
     OptionID INT NOT NULL AUTO_INCREMENT,
     OptionName VARCHAR(100) NOT NULL,
+    OptionNamePrinted VARCHAR(255) NOT NULL,
     OptionValue VARCHAR(500) NOT NULL,
     LastUpdated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 
@@ -103,5 +104,6 @@ SET FOREIGN_KEY_CHECKS=1;
 INSERT INTO Statuses(StatusName)
 VALUES ('Published'), ('Draft'), ('Deleted');
 
-INSERT INTO BumbleOptions(OptionName, OptionValue, LastUpdated)
-VALUES('Current Theme', 'BumbleCMS', CURRENT_TIMESTAMP)
+INSERT INTO BumbleOptions(OptionName, OptionNamePrinted, OptionValue, LastUpdated)
+VALUES('active-theme', 'Active Theme', 'Bumble CMS', CURRENT_TIMESTAMP),
+    ('active-theme-path', 'Active Theme File Path', 'BumbleCMS', CURRENT_TIMESTAMP),
