@@ -102,3 +102,6 @@ SET FOREIGN_KEY_CHECKS=1;
 /* Add some default rows to tables */
 INSERT INTO Statuses(StatusName)
 VALUES ('Published'), ('Draft'), ('Deleted');
+
+INSERT INTO BumbleOptions(OptionName, OptionValue, LastUpdated)
+VALUES('Current Theme', 'BumbleCMS', CURRENT_TIMESTAMP)
