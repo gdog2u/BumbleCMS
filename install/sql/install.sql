@@ -13,16 +13,6 @@ CREATE TABLE BumbleOptions
     PRIMARY KEY (OptionID)
 );
 
-DROP TABLE IF EXISTS RewriteEngine;
-CREATE TABLE RewriteEngine
-(
-    ID INT NOT NULL AUTO_INCREMENT,
-    PostCategory INT NOT NULL,
-    TemplatePath VARCHAR(200) NOT NULL,
-
-    PRIMARY KEY (ID)
-);
-
 DROP INDEX Username ON Users;
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users
@@ -74,9 +64,6 @@ CREATE TABLE PostCategories
 
     PRIMARY KEY (PostCategoryID)
 );
-ALTER TABLE RewriteEngine
-ADD CONSTRAINT FK_RewriteEngine_PostCategory
-    FOREIGN KEY (PostCategory) REFERENCES PostCategories(PostCategoryID);
 
 DROP INDEX TagName ON Tags;
 DROP TABLE IF EXISTS Tags;
