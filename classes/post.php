@@ -87,11 +87,17 @@ class Post
             SELECT *
             FROM Posts
             ORDER BY PublishedDate DESC
-            LIMIT ?
+            LIMIT :rows
         ");
 
-        if(!$get->execute([$numberOfRows]))
+        // LIMIT bound parameters act differently
+        // bindParam can be used to bypass this
+        // https://stackoverflow.com/a/11738633/2708601
+        $get->bindParam(":rows", $numberOfRows, PDO::PARAM_INT);
+
+        if(!$get->execute())
         {
+            error_log($get->errorInfo()[2]);
             return null;
         }
 
