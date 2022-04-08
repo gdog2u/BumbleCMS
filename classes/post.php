@@ -11,7 +11,7 @@ class Post
     public $Summary = null;
     public $Body = null;
     public $Category = null;
-    public $Tags = null;
+    public $Tags = [];
 
     public function __construct($data = array())
     {
@@ -32,6 +32,7 @@ class Post
 		if(isset($data['Category'])){ $this->Category = $data['Category']; }
 
 		if(isset($data['Tags'])){ $this->Tags = $data['Tags']; }
+        else{ $this->_getTags(); }
     }
 
     /* Get Functions */
@@ -149,6 +150,29 @@ class Post
 
 		return $return;
 	}
+
+    protected function _getTags()
+    {
+        $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
+        $get = $conn->prepare("
+            SELECT PostTags.*
+            FROM PostTags
+                LEFT JOIN PostTagLookup AS PTL ON PTL.TagID = PostTags.TagID
+            WHERE PTL.PostID = ?
+        ");
+
+        if(!$get->execute([$this->PostID]))
+        {
+            error_log($get->errorInfo()[2]);
+        }
+        else
+        {
+            while($tag = $get->fetch())
+            {
+                $this->Tags[] = new Tag($tag);
+            }
+        }
+    }
 
     /* Modify Functions */
     public function insert()
