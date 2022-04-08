@@ -2,13 +2,15 @@
 
 class Post
 {
-    // Properties
+    /* Properties */
     public $PostID = null;
     public $AuthorID = null;
+    public $StatusID = null;
     public $PublishedDate = null;
     public $Title = null;
     public $Summary = null;
     public $Body = null;
+    public $Category = null;
     public $Tags = null;
 
     public function __construct($data = array())
@@ -16,6 +18,8 @@ class Post
         if(isset($data['PostID'])){ $this->PostID = $data['PostID']; }
 
         if(isset($data['AuthorID'])){ $this->AuthorID = $data['AuthorID']; }
+        
+        if(isset($data['StatusID'])){ $this->StatusID = $data['StatusID']; }
 
         if(isset($data['PublishedDate'])){ $this->PublishedDate = $data['PublishedDate']; }
 
@@ -25,9 +29,12 @@ class Post
 
         if(isset($data['Body'])){ $this->Body = $data['Body']; }
 
+		if(isset($data['Category'])){ $this->Category = $data['Category']; }
+
 		if(isset($data['Tags'])){ $this->Tags = $data['Tags']; }
     }
 
+    /* Get Functions */
     public static function getByID($id)
     {
         if(!isset($id)){ return null; }
@@ -143,6 +150,7 @@ class Post
 		return $return;
 	}
 
+    /* Modify Functions */
     public function insert()
     {
         if(!is_null($this->PostID)){ trigger_error("Post::insert(): Cannot insert a post that already exists"); }
