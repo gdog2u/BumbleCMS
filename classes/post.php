@@ -155,9 +155,9 @@ class Post
     {
         $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
         $get = $conn->prepare("
-            SELECT PostTags.*
-            FROM PostTags
-                LEFT JOIN PostTagLookup AS PTL ON PTL.TagID = PostTags.TagID
+            SELECT Tags.*
+            FROM Tags
+                LEFT JOIN PostTagLookup AS PTL ON PTL.TagID = Tags.TagID
             WHERE PTL.PostID = ?
         ");
 

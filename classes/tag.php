@@ -22,7 +22,7 @@ class Tag
         $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
         $get = $conn->prepare("
             SELECT *
-            FROM PostTags
+            FROM Tags
             WHERE TagID=?
         ");
 
