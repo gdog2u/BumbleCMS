@@ -52,6 +52,30 @@ class Post
         return null;
     }
 
+    public static function getBySlug(string $slug)
+    {
+        if(!isset($slug)){ return null; }
+
+        $conn = new PDO(DB_DSN, DB_USER, DB_PASS);
+        $get = $conn->prepare("
+            SELECT *
+            FROM Posts
+            WHERE Slug=?
+        ");
+
+        if(!$get->execute(([$slug])))
+        {
+            return null;
+        }
+
+        $post = $get->fetch();
+        $conn = null;
+
+        if($post){ return new Post($post); }
+
+        return null;
+    }
+
     public static function getNRows($numberOfRows=999999)
     {
         $return = array(
