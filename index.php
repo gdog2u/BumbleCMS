@@ -14,6 +14,12 @@
 
 	$slug = getSlugFromURI();
 
+	if(count($slug) == 0)
+	{
+		include($bumble['theme-path']."home.php");
+		exit();
+	}
+
 	$template = getSlugTemplate($slug[0]??"");
 
 	if(file_exists($bumble['theme-path'].$template))
