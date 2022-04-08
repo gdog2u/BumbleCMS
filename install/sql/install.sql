@@ -105,5 +105,6 @@ INSERT INTO Statuses(StatusName)
 VALUES ('Published'), ('Draft'), ('Deleted');
 
 INSERT INTO BumbleOptions(OptionName, OptionNamePrinted, OptionValue, LastUpdated)
-VALUES('active-theme', 'Active Theme', 'Bumble CMS', CURRENT_TIMESTAMP),
-    ('active-theme-path', 'Active Theme File Path', 'BumbleCMS', CURRENT_TIMESTAMP),
+VALUES ('site-title', 'Site Title', 'The Hive', CURRENT_TIMESTAMP),
+    ('active-theme', 'Active Theme', 'Bumble CMS', CURRENT_TIMESTAMP),
+    ('active-theme-path', 'Active Theme File Path', 'BumbleCMS', CURRENT_TIMESTAMP)
