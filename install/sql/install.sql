@@ -41,6 +41,7 @@ DROP TABLE IF EXISTS Posts;
 CREATE TABLE Posts
 (
     PostID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    PostCategoryID INT NOT NULL,
     AuthorID INT NOT NULL,
     StatusID TINYINT UNSIGNED NOT NULL,
     Slug VARCHAR(100) NOT NULL,
@@ -64,6 +65,9 @@ CREATE TABLE PostCategories
 
     PRIMARY KEY (PostCategoryID)
 );
+
+ALTER TABLE Posts
+ADD CONSTRAINT FK_Posts_PostCategoryID FOREIGN KEY(PostCategoryID) REFERENCES PostCategories(PostCategoryID);
 
 DROP INDEX TagName ON Tags;
 DROP TABLE IF EXISTS Tags;
