@@ -7,6 +7,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?=(isset($pageTitle) ? "$pageTitle | The Hive" : 'The Hive') ?></title>
+        <title><?=(isset($p->Title) ? "$p->Title | The Hive" : 'The Hive') ?></title>
     </head>
     <body>
