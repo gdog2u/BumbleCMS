@@ -36,6 +36,17 @@ CREATE TABLE Statuses
     PRIMARY KEY (StatusID)
 );
 
+DROP INDEX URIPath ON RewriteEngine;
+DROP TABLE IF EXISTS RewriteEngine;
+CREATE TABLE RewriteEngine
+(
+	ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    URIPath VARCHAR(255) NOT NULL UNIQUE,
+    TemplatePath VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY(ID)
+);
+
 /* Tables pertaining to Posts */
 DROP TABLE IF EXISTS Posts;
 CREATE TABLE Posts
@@ -60,8 +71,6 @@ CREATE TABLE PostCategories
 (
     PostCategoryID INT NOT NULL AUTO_INCREMENT,
     CategoryName VARCHAR(100) NOT NULL,
-    CategoryURIPrefix VARCHAR(125) NOT NULL,
-    TemplateFile VARCHAR(255) NOT NULL,
 
     PRIMARY KEY (PostCategoryID)
 );
@@ -98,4 +107,7 @@ VALUES ('Published'), ('Draft'), ('Deleted');
 INSERT INTO BumbleOptions(OptionName, OptionNamePrinted, OptionValue, LastUpdated)
 VALUES ('site-title', 'Site Title', 'The Hive', CURRENT_TIMESTAMP),
     ('active-theme', 'Active Theme', 'Bumble CMS', CURRENT_TIMESTAMP),
-    ('active-theme-path', 'Active Theme File Path', 'BumbleCMS', CURRENT_TIMESTAMP)
+    ('active-theme-path', 'Active Theme File Path', 'BumbleCMS', CURRENT_TIMESTAMP);
+
+INSERT INTO RewriteEngine(URIPath, TemplatePath)
+VALUES ('blog', 'post.php');

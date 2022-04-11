@@ -35,9 +35,9 @@ function getSlugTemplate(string $slug): string
     $template = "";
 
     $get = $dbh->prepare("
-        SELECT TemplateFile
-        FROM PostCategories
-        WHERE CategoryURIPrefix = ?
+        SELECT TemplatePath
+        FROM RewriteEngine
+        WHERE URIPath = ?
     ");
 
     $get->execute([$slug]);
