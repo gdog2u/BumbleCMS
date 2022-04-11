@@ -47,7 +47,7 @@ function getSlugTemplate(string $slug): string
     return $template;
 }
 
-function display404()
+function display404(): never
 {
     global $bumble;
     
