@@ -4,6 +4,7 @@ class Post
 {
     /* Properties */
     public $PostID = null;
+    public $PostCategoryID = null;
     public $AuthorID = null;
     public $StatusID = null;
     public $PublishedDate = null;
@@ -16,6 +17,8 @@ class Post
     public function __construct($data = array())
     {
         if(isset($data['PostID'])){ $this->PostID = $data['PostID']; }
+
+        if(isset($data['PostCategoryID'])){ $this->PostCategoryID = $data['PostCategoryID']; }
 
         if(isset($data['AuthorID'])){ $this->AuthorID = $data['AuthorID']; }
         
@@ -30,6 +33,7 @@ class Post
         if(isset($data['Body'])){ $this->Body = $data['Body']; }
 
 		if(isset($data['Category'])){ $this->Category = $data['Category']; }
+        else{ $this->_getPostCategory(); }
 
 		if(isset($data['Tags'])){ $this->Tags = $data['Tags']; }
         else{ $this->_getTags(); }
@@ -172,6 +176,11 @@ class Post
                 $this->Tags[] = new Tag($tag);
             }
         }
+    }
+
+    protected function _getPostCategory()
+    {
+        $this->Category = PostCategory::getByID($this->PostCategoryID);
     }
 
     /* Modify Functions */
