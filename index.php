@@ -22,7 +22,7 @@
 
 	$template = getSlugTemplate($slug[0]??"");
 
-	if(file_exists($bumble['theme-path'].$template))
+	if(!empty($template) && file_exists($bumble['theme-path'].$template))
 	{
 		include($bumble['theme-path'].$template);
 	}
